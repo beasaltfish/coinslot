@@ -205,7 +205,7 @@ async function loadGames(): Promise<GameMeta[]> {
     if (!res.ok) throw new Error(String(res.status))
     return (await res.json()) as GameMeta[]
   } catch (e) {
-    console.error('coinslot: could not load games.json', e)
+    console.error('idle-arcade: could not load games.json', e)
     return []
   }
 }

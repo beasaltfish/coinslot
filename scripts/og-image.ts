@@ -63,6 +63,10 @@ const FONT: Record<string, string[]> = {
   S: ['.####', '#....', '#....', '.###.', '....#', '....#', '####.'],
   L: ['#....', '#....', '#....', '#....', '#....', '#....', '#####'],
   T: ['#####', '..#..', '..#..', '..#..', '..#..', '..#..', '..#..'],
+  D: ['####.', '#...#', '#...#', '#...#', '#...#', '#...#', '####.'],
+  E: ['#####', '#....', '#....', '####.', '#....', '#....', '#####'],
+  A: ['.###.', '#...#', '#...#', '#####', '#...#', '#...#', '#...#'],
+  R: ['####.', '#...#', '#...#', '####.', '#.#..', '#..#.', '#...#'],
 }
 
 export function renderOgImage(loops: Loop[]): Uint8Array {
@@ -84,7 +88,7 @@ export function renderOgImage(loops: Loop[]): Uint8Array {
   const BAND_H = 110
   rect(0, 0, W, BAND_H, BAND)
   const S = 10
-  const text = 'COIN SLOT'
+  const text = 'IDLE ARCADE'
   const tw = text.length * 6 * S - S
   let tx = Math.round((W - tw) / 2)
   for (const ch of text) {

@@ -1,13 +1,13 @@
-# Contributing to Coin Slot
+# Contributing to Idle Arcade
 
-Coin Slot is a wall of original arcade games that run inside Claude Code while it works. You can add one, and you don't have to write the code yourself: your coding agent does.
+Idle Arcade is a wall of original arcade games that run inside Claude Code while it works. You can add one, and you don't have to write the code yourself: your coding agent does.
 
 ## How
 
-1. **Fork the repo** (`beasaltfish/coinslot`).
-2. **Paste the prompt into your agent** (Claude Code, or any coding agent that can run shell commands). The prompt is also on the Coin Slot site, under "Make a game", with a copy button; replace `<YOUR NAME>` with the name you want on the game:
+1. **Fork the repo** (`beasaltfish/idle-arcade`).
+2. **Paste the prompt into your agent** (Claude Code, or any coding agent that can run shell commands). The prompt is also on the Idle Arcade site, under "Make a game", with a copy button; replace `<YOUR NAME>` with the name you want on the game:
 
-   > Build an original arcade game for Coin Slot (github.com/beasaltfish/coinslot). Fork the repo, read AGENTS.md at its root, and follow it to add one game. Use "<YOUR NAME>" as the author in plugin.json. Run the checks it lists until they pass, then open a pull request to beasaltfish/coinslot.
+   > Build an original arcade game for Idle Arcade (github.com/beasaltfish/idle-arcade). Fork the repo, read AGENTS.md at its root, and follow it to add one game. Use "<YOUR NAME>" as the author in plugin.json. Run the checks it lists until they pass, then open a pull request to beasaltfish/idle-arcade.
 
 3. **Your agent opens a pull request.**
 4. **After review, your game joins the wall.**
@@ -21,7 +21,7 @@ Coin Slot is a wall of original arcade games that run inside Claude Code while i
 
 ## What happens when it merges
 
-Your game is listed on the site's wall and in the Claude Code marketplace, with your name as the author. Anyone can then install it with `/plugin install <id> --marketplace beasaltfish/coinslot`.
+Your game is listed on the site's wall and in the Claude Code marketplace, with your name as the author. Anyone can then install it with `/plugin install <id> --marketplace beasaltfish/idle-arcade`.
 
 ## License
 

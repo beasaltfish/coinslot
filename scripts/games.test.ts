@@ -16,7 +16,7 @@ test('reads every game in marketplace order', () => {
 })
 
 function fixture(author: unknown): string {
-  const tmp = mkdtempSync(join(tmpdir(), 'coinslot-games-'))
+  const tmp = mkdtempSync(join(tmpdir(), 'idle-games-'))
   mkdirSync(join(tmp, '.claude-plugin'))
   writeFileSync(join(tmp, '.claude-plugin', 'marketplace.json'), JSON.stringify({ plugins: [{ name: 'snake', source: './plugins/snake' }] }))
   mkdirSync(join(tmp, 'plugins', 'snake', '.claude-plugin'), { recursive: true })

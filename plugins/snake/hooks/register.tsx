@@ -6,7 +6,7 @@ export const register: Register = on => {
   registerGamePane(on, {
     pane: 'snake',
     title: 'Snake',
-    command: 'coinslot-snake',
+    command: 'idle-snake',
     description: 'Open the Snake arcade game in a pane',
     opened: 'Snake opened. Tap the arrow keys or WASD to steer; p pauses; esc returns to chat.',
   })

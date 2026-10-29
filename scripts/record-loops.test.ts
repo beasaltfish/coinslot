@@ -45,7 +45,7 @@ describe('recordLoop', () => {
   })
 
   test('writes games.json', () => {
-    const tmp = mkdtempSync(join(tmpdir(), 'coinslot-rec-'))
+    const tmp = mkdtempSync(join(tmpdir(), 'idle-rec-'))
     const out = join(tmp, 'loops')
     const p = Bun.spawnSync(['bun', join(root, 'scripts/record-loops.ts'), out], { cwd: root })
     expect(p.exitCode).toBe(0)

@@ -2,17 +2,17 @@
 
 These rules are for contributed games. (The author's own work on this repo is not covered by them.)
 
-Coin Slot is a set of original arcade games that run inside Claude Code while it works. Each game is a Claude Code plugin under `plugins/<id>/`. Your job: add **exactly one new game**, check it, open one pull request. Do not ask the human questions; everything you need is below.
+Idle Arcade is a set of original arcade games that run inside Claude Code while it works. Each game is a Claude Code plugin under `plugins/<id>/`. Your job: add **exactly one new game**, check it, open one pull request. Do not ask the human questions; everything you need is below.
 
 ## 1. Set up
 
-Coin Slot games are Claude Code mods. **Building and testing one requires Claude Code installed** (the `claude` command on PATH): `bun run check` calls `claude plugin validate` and `claude plugin test`. You also need `bun` and `npx`.
+Idle Arcade games are Claude Code mods. **Building and testing one requires Claude Code installed** (the `claude` command on PATH): `bun run check` calls `claude plugin validate` and `claude plugin test`. You also need `bun` and `npx`.
 
 Fork first, and branch before you scaffold:
 
 ```bash
-gh repo fork beasaltfish/coinslot --clone && cd coinslot
-git remote add upstream https://github.com/beasaltfish/coinslot.git   # skip if `gh` already added it
+gh repo fork beasaltfish/idle-arcade --clone && cd idle-arcade
+git remote add upstream https://github.com/beasaltfish/idle-arcade.git   # skip if `gh` already added it
 git fetch upstream
 git switch -c game/<id> upstream/main
 bun install
@@ -208,7 +208,7 @@ bun scripts/check-contribution.ts upstream/main
 
 ## 9. Open the pull request
 
-You are already on `game/<id>` (section 1) and have committed there. Push the branch to your fork (`git push -u origin game/<id>`), then open a PR to `beasaltfish/coinslot` `main`, titled `game: <Title>`, with this description:
+You are already on `game/<id>` (section 1) and have committed there. Push the branch to your fork (`git push -u origin game/<id>`), then open a PR to `beasaltfish/idle-arcade` `main`, titled `game: <Title>`, with this description:
 
 ```markdown
 ## <Title>

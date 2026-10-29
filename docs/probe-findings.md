@@ -57,7 +57,7 @@ The Bash call in scenario (b) ran without a prompt because the session was in au
 
 Passed on c46fd20: bonus fish recognisable, done overlay at turn end, click/key resumes, coins survive the dialog.
 
-Renamed 2026-10-28: reef-net is now fish-shooter (command `/coinslot-fish-shooter`); entries above keep the old name as measured.
+Renamed 2026-10-28: reef-net is now fish-shooter (command `/idle-fish-shooter`); entries above keep the old name as measured.
 
 ## Esc and pointer move, live
 

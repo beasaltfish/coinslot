@@ -1,106 +1,106 @@
-# Coin Slot
+# Idle Arcade
 
-Original terminal mini-games, each a Claude Code mod that runs in a pane beside the chat. Type `/coinslot` to list every installed game.
+Original terminal mini-games, each a Claude Code mod that runs in a pane beside the chat. Type `/idle-` and the command menu lists every installed game.
 
-Live demo: https://coinslot.beasaltfish.com
+Live demo: https://idlearcade.beasaltfish.com
 
 ## Install
 
 ### Fish Shooter
 
 ```
-/plugin install fish-shooter --marketplace beasaltfish/coinslot
+/plugin install fish-shooter --marketplace beasaltfish/idle-arcade
 ```
 
-The first time, Claude Code asks `Add marketplace?` for `github:beasaltfish/coinslot`: answer `y`, then pick a scope (user scope is listed first). The mod is active in that session right away.
+The first time, Claude Code asks `Add marketplace?` for `github:beasaltfish/idle-arcade`: answer `y`, then pick a scope (user scope is listed first). The mod is active in that session right away.
 
 From a shell the same install is:
 
 ```
-claude plugin install fish-shooter --marketplace beasaltfish/coinslot
+claude plugin install fish-shooter --marketplace beasaltfish/idle-arcade
 ```
 
-Open the game with `/coinslot-fish-shooter`.
+Open the game with `/idle-fish-shooter`.
 
 ### Brick Breaker
 
 ```
-/plugin install brick-breaker --marketplace beasaltfish/coinslot
+/plugin install brick-breaker --marketplace beasaltfish/idle-arcade
 ```
 
-The first time, Claude Code asks `Add marketplace?` for `github:beasaltfish/coinslot`: answer `y`, then pick a scope (user scope is listed first). The mod is active in that session right away.
+The first time, Claude Code asks `Add marketplace?` for `github:beasaltfish/idle-arcade`: answer `y`, then pick a scope (user scope is listed first). The mod is active in that session right away.
 
 From a shell the same install is:
 
 ```
-claude plugin install brick-breaker --marketplace beasaltfish/coinslot
+claude plugin install brick-breaker --marketplace beasaltfish/idle-arcade
 ```
 
-Open the game with `/coinslot-brick-breaker`.
+Open the game with `/idle-brick-breaker`.
 
 ### Snake
 
 ```
-/plugin install snake --marketplace beasaltfish/coinslot
+/plugin install snake --marketplace beasaltfish/idle-arcade
 ```
 
-The first time, Claude Code asks `Add marketplace?` for `github:beasaltfish/coinslot`: answer `y`, then pick a scope (user scope is listed first). The mod is active in that session right away.
+The first time, Claude Code asks `Add marketplace?` for `github:beasaltfish/idle-arcade`: answer `y`, then pick a scope (user scope is listed first). The mod is active in that session right away.
 
 From a shell the same install is:
 
 ```
-claude plugin install snake --marketplace beasaltfish/coinslot
+claude plugin install snake --marketplace beasaltfish/idle-arcade
 ```
 
-Open the game with `/coinslot-snake`.
+Open the game with `/idle-snake`.
 
 ### Space Shooter
 
 ```
-/plugin install space-shooter --marketplace beasaltfish/coinslot
+/plugin install space-shooter --marketplace beasaltfish/idle-arcade
 ```
 
-The first time, Claude Code asks `Add marketplace?` for `github:beasaltfish/coinslot`: answer `y`, then pick a scope (user scope is listed first). The mod is active in that session right away.
+The first time, Claude Code asks `Add marketplace?` for `github:beasaltfish/idle-arcade`: answer `y`, then pick a scope (user scope is listed first). The mod is active in that session right away.
 
 From a shell the same install is:
 
 ```
-claude plugin install space-shooter --marketplace beasaltfish/coinslot
+claude plugin install space-shooter --marketplace beasaltfish/idle-arcade
 ```
 
-Open the game with `/coinslot-space-shooter`.
+Open the game with `/idle-space-shooter`.
 
 ### Tap Flyer
 
 ```
-/plugin install tap-flyer --marketplace beasaltfish/coinslot
+/plugin install tap-flyer --marketplace beasaltfish/idle-arcade
 ```
 
-The first time, Claude Code asks `Add marketplace?` for `github:beasaltfish/coinslot`: answer `y`, then pick a scope (user scope is listed first). The mod is active in that session right away.
+The first time, Claude Code asks `Add marketplace?` for `github:beasaltfish/idle-arcade`: answer `y`, then pick a scope (user scope is listed first). The mod is active in that session right away.
 
 From a shell the same install is:
 
 ```
-claude plugin install tap-flyer --marketplace beasaltfish/coinslot
+claude plugin install tap-flyer --marketplace beasaltfish/idle-arcade
 ```
 
-Open the game with `/coinslot-tap-flyer`.
+Open the game with `/idle-tap-flyer`.
 
 ### Jump Runner
 
 ```
-/plugin install jump-runner --marketplace beasaltfish/coinslot
+/plugin install jump-runner --marketplace beasaltfish/idle-arcade
 ```
 
-The first time, Claude Code asks `Add marketplace?` for `github:beasaltfish/coinslot`: answer `y`, then pick a scope (user scope is listed first). The mod is active in that session right away.
+The first time, Claude Code asks `Add marketplace?` for `github:beasaltfish/idle-arcade`: answer `y`, then pick a scope (user scope is listed first). The mod is active in that session right away.
 
 From a shell the same install is:
 
 ```
-claude plugin install jump-runner --marketplace beasaltfish/coinslot
+claude plugin install jump-runner --marketplace beasaltfish/idle-arcade
 ```
 
-Open the game with `/coinslot-jump-runner`.
+Open the game with `/idle-jump-runner`.
 
 ## Notifications
 

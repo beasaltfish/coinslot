@@ -28,7 +28,7 @@ test('rejects bad ids and titles', () => {
 })
 
 test('the CLI scaffolds a game that is in sync and listed last', () => {
-  const tmp = mkdtempSync(join(tmpdir(), 'coinslot-new-'))
+  const tmp = mkdtempSync(join(tmpdir(), 'idle-new-'))
   cpSync(root, tmp, {
     recursive: true,
     filter: s => !/\/(node_modules|\.git)(\/|$)/.test(s) || s === root,

@@ -51,7 +51,7 @@ for (const name of names) {
       console.error('FAIL ' + name + ': tsc: vendor/claude-code.d.ts missing; run scripts/vendor-types.sh')
       process.exit(1)
     }
-    const tmp = join(tmpdir(), `coinslot-tsconfig-${name}-${process.pid}.json`)
+    const tmp = join(tmpdir(), `idle-tsconfig-${name}-${process.pid}.json`)
     writeFileSync(
       tmp,
       JSON.stringify({

@@ -3,11 +3,11 @@ import { resolveSiteUrl } from './site-url'
 
 describe('resolveSiteUrl', () => {
   test('deploy requires https and strips trailing slash', () => {
-    expect(resolveSiteUrl(' https://coinslot.dev/ ', true)).toBe('https://coinslot.dev')
+    expect(resolveSiteUrl(' https://idlearcade.dev/ ', true)).toBe('https://idlearcade.dev')
     expect(resolveSiteUrl('https://x.dev/play', true)).toBe('https://x.dev/play')
   })
   test('deploy rejects unset, blank, http, junk', () => {
-    for (const v of [undefined, '', '  ', 'http://x.dev', 'coinslot.dev', 'https://', 'https://a b']) {
+    for (const v of [undefined, '', '  ', 'http://x.dev', 'idlearcade.dev', 'https://', 'https://a b']) {
       expect(() => resolveSiteUrl(v, true)).toThrow()
     }
   })

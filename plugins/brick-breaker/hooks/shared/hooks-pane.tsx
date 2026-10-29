@@ -41,7 +41,7 @@ export function registerGamePane(on: On, opts: PaneOpts): void {
     if (e.surface !== 'terminal') {
       const { Text } = $.ui.resolve(e)
 
-      return <Text>Coin Slot runs in the terminal.</Text>
+      return <Text>Idle Arcade runs in the terminal.</Text>
     }
     const { Box, Client } = $.ui.resolve(e)
     const link = await readLink($)
