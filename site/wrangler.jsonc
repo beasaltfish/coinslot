@@ -2,6 +2,6 @@
   "name": "coinslot",
   "compatibility_date": "2026-10-01",
   "workers_dev": false,
-  "routes": [{ "pattern": "coinslot.agentlenshq.com", "custom_domain": true }],
+  "routes": [{ "pattern": "coinslot.beasaltfish.com", "custom_domain": true }],
   "assets": { "directory": "./dist" }
 }
