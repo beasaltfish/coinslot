@@ -1,0 +1,17 @@
+{
+  "name": "idle-arcade",
+  "version": "0.1.0",
+  "description": "Every Idle Arcade game in one install, and /idle to pick one. Games pause when Claude finishes; Claude's tool calls drop bonuses.",
+  "author": {
+    "name": "beasaltfish"
+  },
+  "license": "MIT",
+  "dependencies": [
+    "fish-shooter",
+    "brick-breaker",
+    "snake",
+    "space-shooter",
+    "tap-flyer",
+    "jump-runner"
+  ]
+}

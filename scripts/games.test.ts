@@ -2,14 +2,15 @@ import { expect, test } from 'bun:test'
 import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
-import { readGameMetas } from './games'
+import { HUB_ID, readGameMetas } from './games'
 
 const root = resolve(import.meta.dir, '..')
 
-test('reads every game in marketplace order', () => {
+test('reads every game in marketplace order, without the hub', () => {
   const market = JSON.parse(readFileSync(join(root, '.claude-plugin', 'marketplace.json'), 'utf8')) as { plugins: { name: string }[] }
   const metas = readGameMetas(root)
-  expect(metas.map(m => m.id)).toEqual(market.plugins.map(p => p.name))
+  expect(metas.map(m => m.id)).toEqual(market.plugins.map(p => p.name).filter(n => n !== HUB_ID))
+  expect(metas.map(m => m.id)).not.toContain(HUB_ID)
   expect(metas.length).toBeGreaterThan(0)
   expect(metas.every(m => m.author.trim() !== '' && m.author === m.author.trim())).toBe(true)
   expect(metas.every(m => m.name === m.id.toUpperCase().replaceAll('-', ' '))).toBe(true)

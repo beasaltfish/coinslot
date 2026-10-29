@@ -237,3 +237,4 @@ One game per PR. Do not push to `main` of the upstream repo, and never commit `v
 2. Put the PR in a separate `git worktree` (or `gh pr checkout` into a throwaway clone). Never run `bun install`, `bun run` or `bun test` inside the PR checkout before review: its `bunfig.toml` preload would run.
 3. Review the diff by hand.
 4. Only then run the PR's tests, in an isolated environment (a throwaway container or VM), never on a machine with credentials.
+5. After merging, run `bun run hub` on `main`, commit and push (adds the game to `plugins/idle-arcade`'s list and dependencies, bumps its version). Contributors never touch `plugins/idle-arcade`.

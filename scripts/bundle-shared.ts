@@ -1,6 +1,8 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 
+import { HUB_ID } from './games'
+
 const root = resolve(import.meta.dir, '..')
 const checkOnly = process.argv.includes('--check')
 const only = process.argv.find(a => a.startsWith('--plugin='))?.slice(9)
@@ -15,7 +17,7 @@ const sharedFor = (name: string) => allShared.filter(f => name === HOST || !host
 const pluginsDir = join(root, 'plugins')
 const plugins = existsSync(pluginsDir)
   ? readdirSync(pluginsDir, { withFileTypes: true })
-      .filter(d => d.isDirectory() && d.name !== '_probe')
+      .filter(d => d.isDirectory() && d.name !== '_probe' && d.name !== HUB_ID)
       .map(d => d.name)
       .filter(n => !only || n === only)
   : []

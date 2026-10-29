@@ -8,6 +8,7 @@
     "bundle": "bun scripts/bundle-shared.ts",
     "check": "bun scripts/check.ts",
     "new-game": "bun scripts/new-game.ts",
+    "hub": "bun scripts/hub.ts",
     "test:site": "bun test site scripts",
     "build:site": "bun scripts/build-site.ts",
     "deploy:site": "bun scripts/build-site.ts --deploy && cd site && npx wrangler deploy"

@@ -4,6 +4,9 @@ import type { Cells } from '../shared/cells'
 
 export type GameMeta = { id: string; name: string; author: string }
 
+// The one plugin that is not a game: it lists and launches the others (plugins/idle-arcade).
+export const HUB_ID = 'idle-arcade'
+
 export type GameEntry = GameMeta & {
   seed: number
   // seconds simulated before recording starts
@@ -21,7 +24,7 @@ const readJson = (path: string): any => JSON.parse(readFileSync(path, 'utf8'))
 // Marketplace order is the game order.
 export function readGameMetas(root: string): GameMeta[] {
   const market = readJson(join(root, '.claude-plugin', 'marketplace.json'))
-  return market.plugins.map((p: { name: string }): GameMeta => {
+  return market.plugins.filter((p: { name: string }) => p.name !== HUB_ID).map((p: { name: string }): GameMeta => {
     const id = p.name
     const author = readJson(join(root, 'plugins', id, '.claude-plugin', 'plugin.json')).author?.name
     if (typeof author !== 'string' || !author.trim()) throw new Error(`${id}: plugin.json needs author.name`)

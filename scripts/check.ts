@@ -2,6 +2,8 @@ import { existsSync, readdirSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
 
+import { HUB_ID } from './games'
+
 const root = resolve(import.meta.dir, '..')
 const pluginsDir = join(root, 'plugins')
 const names = existsSync(pluginsDir)
@@ -38,7 +40,7 @@ for (const name of names) {
 
   // _probe is a throwaway and never carries shared/; every other plugin, including
   // the _shared-tests host, must be in sync.
-  if (name !== '_probe') {
+  if (name !== '_probe' && name !== HUB_ID) {
     run(name, 'bundle --check', ['bun', 'scripts/bundle-shared.ts', '--check', `--plugin=${name}`])
   }
   run(name, 'validate', ['claude', 'plugin', 'validate', dir])

@@ -6,6 +6,11 @@
   },
   "plugins": [
     {
+      "name": "idle-arcade",
+      "source": "./plugins/idle-arcade",
+      "description": "Every Idle Arcade game in one install, and /idle to pick one."
+    },
+    {
       "name": "fish-shooter",
       "source": "./plugins/fish-shooter",
       "description": "An original arcade fish-shooter game for Claude Code. Aim a net cannon and catch fish. Pauses when Claude finishes; Claude's tool calls drop golden fish."

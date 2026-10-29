@@ -21,7 +21,7 @@ Idle Arcade is a wall of original arcade games that run inside Claude Code while
 
 ## What happens when it merges
 
-Your game is listed on the site's wall and in the Claude Code marketplace, with your name as the author. Anyone can then install it with `/plugin install <id> --marketplace beasaltfish/idle-arcade`.
+Your game is listed on the site's wall and in the Claude Code marketplace, with your name as the author. Anyone can then install it with `/plugin install <id> --marketplace beasaltfish/idle-arcade`, and it appears in the `/idle` list of the one-install hub after the maintainer's next hub update.
 
 ## License
 
@@ -39,3 +39,4 @@ CI screens PRs with `--no-types` (the engine types are not in the repo), so the 
 2. Keep the PR in a separate `git worktree` (or a throwaway clone via `gh pr checkout`). Never `bun install`, `bun run` or `bun test` inside the PR checkout before review: its `bunfig.toml` preload would run.
 3. Review the diff by hand.
 4. Run the PR's tests only in an isolated container or VM, never on a machine with credentials.
+5. After merging, run `bun run hub` on `main`, commit and push. It adds the game to the hub plugin's list and dependencies and bumps the hub's version (installed copies are cached by version). A workflow on `main` fails until this is done.

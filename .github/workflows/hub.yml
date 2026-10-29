@@ -1,0 +1,21 @@
+name: hub
+
+# The hub plugin (plugins/idle-arcade) lists every game and depends on all of them.
+# After a game is merged, `bun run hub` updates it; this fails on main until that is committed.
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  in-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.14
+      - run: bun install --frozen-lockfile
+      - run: bun scripts/hub.ts --check
