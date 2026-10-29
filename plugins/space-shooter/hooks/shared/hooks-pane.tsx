@@ -16,7 +16,8 @@ export function registerGamePane(on: On, opts: PaneOpts): void {
   registerClaudeLink(on, { title: opts.title, paneId: opts.pane })
 
   on('session.start', async ($, e, next) => {
-    await $.command.register({ name: opts.command, description: opts.description })
+    // immediate: a game is opened while Claude works; without it the command waits for the turn to end
+    await $.command.register({ name: opts.command, description: opts.description, immediate: true })
 
     return next(e)
   })
