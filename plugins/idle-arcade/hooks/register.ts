@@ -50,8 +50,13 @@ export const register: Register = on => {
           label: (hotkey ?? ' ') + '  ' + g.title + '   by ' + g.author,
           hotkey,
           onPress: async () => {
+            // The command goes to the prompt for the person to send, not run from here: a game that
+            // another plugin's command opens counts as unasked, and an unasked pane waits undrawn on a
+            // terminal narrower than 144 columns. A command the person sends is placed at any width.
+            const command = '/' + (run ?? commandOf(g.id))
             await $.ui.close({ id: PANE })
-            await $.command.run({ command: run ?? commandOf(g.id) })
+            const filled = await $.prompt.fill({ text: command })
+            await $.ui.toast(filled.isFilled ? 'Press Enter to open ' + g.title : 'Type ' + command + ' to open ' + g.title)
           },
         })
       }
@@ -80,7 +85,7 @@ export const register: Register = on => {
         Text({ weight: 'bold', children: 'IDLE ARCADE' }),
         Text({
           dimColor: true,
-          children: (GAMES.length > 9 ? 'Pick a game: keys 1-9, or Tab and Enter.' : 'Pick a game: number key, or Tab and Enter.') + ' Esc closes.',
+          children: (GAMES.length > 9 ? 'Pick a game: keys 1-9, or Tab and Enter.' : 'Pick a game: number key, or Tab and Enter.') + ' It goes to the prompt; press Enter. Esc closes.',
         }),
         ...rows,
       ],

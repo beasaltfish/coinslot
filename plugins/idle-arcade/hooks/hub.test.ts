@@ -75,7 +75,7 @@ test('a game that is not installed shows its install command to copy', async ($,
   expect(copied).toBe('/plugin install ' + missing.id + ' --marketplace beasaltfish/idle-arcade')
 })
 
-test('pressing an installed game closes the list and runs its command', async ($, on) => {
+test('pressing an installed game closes the list and puts its command in the prompt', async ($, on) => {
   const stub = loose(on)
   const steps: string[] = []
   stub('ui.close', (_: unknown, e: { id: string }) => {
@@ -83,25 +83,37 @@ test('pressing an installed game closes the list and runs its command', async ($
 
     return { value: undefined }
   })
-  stub('command.run', (_: unknown, e: { command: string }) => {
-    steps.push('run:' + e.command)
+  stub('prompt.fill', (_: unknown, e: { text: string }) => {
+    steps.push('fill:' + e.text)
+
+    return { isFilled: true }
+  })
+  stub('ui.toast', (_: unknown, e: { text?: string }) => {
+    steps.push('toast')
+
+    return { value: undefined }
+  })
+  stub('command.run', () => {
+    steps.push('RAN')
 
     return { value: { text: 'ok' } }
   })
   const ui = await openList($, on, GAMES.map(g => g.id))
   await ui.press({ key: 'snake' })
   await ui.advance(50)
-  expect(steps).toEqual(['close:idle', 'run:idle-snake'])
+  // never run from here: a pane another plugin's command opens waits undrawn on a narrow terminal
+  expect(steps).toEqual(['close:idle', 'fill:/idle-snake', 'toast'])
 })
 
-test('a command the engine names another way is still found and run by its own name', async ($, on) => {
+test('a command the engine names another way is found, and that name goes to the prompt', async ($, on) => {
   const stub = loose(on)
-  const steps: string[] = []
+  let filled = ''
   stub('ui.close', () => ({ value: undefined }))
-  stub('command.run', (_: unknown, e: { command: string }) => {
-    steps.push(e.command)
+  stub('ui.toast', () => ({ value: undefined }))
+  stub('prompt.fill', (_: unknown, e: { text: string }) => {
+    filled = e.text
 
-    return { value: { text: 'ok' } }
+    return { isFilled: true }
   })
   stub('command.list', () => ({ value: [{ name: 'snake:idle-snake', description: '', source: 'plugin', plugin: 'snake' }] }))
   stub('ui.open', () => ({ value: { isPlaced: true } }))
@@ -110,7 +122,23 @@ test('a command the engine names another way is still found and run by its own n
   expect(await ui.find({ key: 'snake' })).toBeDefined()
   await ui.press({ key: 'snake' })
   await ui.advance(50)
-  expect(steps).toEqual(['snake:idle-snake'])
+  expect(filled).toBe('/snake:idle-snake')
+})
+
+test('if the prompt cannot take the command, the person is told what to type', async ($, on) => {
+  const stub = loose(on)
+  const toasts: string[] = []
+  stub('ui.close', () => ({ value: undefined }))
+  stub('prompt.fill', () => ({ isFilled: false }))
+  stub('ui.toast', (_: unknown, e: { text?: string }) => {
+    toasts.push(JSON.stringify(e))
+
+    return { value: undefined }
+  })
+  const ui = await openList($, on, GAMES.map(g => g.id))
+  await ui.press({ key: 'snake' })
+  await ui.advance(50)
+  expect(toasts.join('')).toContain('Type /idle-snake')
 })
 
 test('if the command list cannot be read, every game is offered', async ($, on) => {
