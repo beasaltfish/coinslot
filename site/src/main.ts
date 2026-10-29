@@ -1,7 +1,7 @@
 import { createAudio } from './audio'
 import { copyCommand } from './copy'
 import { byline } from './byline'
-import { installCommand } from './install'
+import { HUB_ID, installCommand } from './install'
 import { loadTile, TilePlayer } from './player'
 import { NAME_PLACEHOLDER, PROMPT } from './prompt'
 import { moveSel, stickAngle, type Dir } from './wall-logic'
@@ -98,32 +98,41 @@ function unzoom(): void {
   }, 500)
 }
 
-// second screen: the contribution prompt, with the name placeholder highlighted
+// second screen: two copy boxes, the one-install hub command and the contribution prompt
+function wireCopy(code: HTMLElement, btn: HTMLButtonElement, text: string, idle: string): void {
+  let timer = 0
+  btn.addEventListener('click', () => {
+    void (async () => {
+      const ok = await copyCommand(text, { clipboard: navigator.clipboard, execCopy })
+      if (!ok) {
+        selectText(code)
+        return
+      }
+      audio.sfx('coin')
+      btn.textContent = '✓ Copied'
+      btn.classList.add('done')
+      clearTimeout(timer)
+      timer = window.setTimeout(() => {
+        btn.textContent = idle
+        btn.classList.remove('done')
+      }, 2000)
+    })()
+  })
+}
+
+const hubCode = document.getElementById('hub-cmd') as HTMLElement
+hubCode.textContent = installCommand(HUB_ID)
+wireCopy(hubCode, document.getElementById('copy-hub') as HTMLButtonElement, installCommand(HUB_ID), '⧉ Copy command')
+
+// the contribution prompt, with the name placeholder highlighted
 const promptCode = document.getElementById('prompt') as HTMLElement
-const promptBtn = document.getElementById('copy-prompt') as HTMLButtonElement
 {
   const [before = '', after = ''] = PROMPT.split(NAME_PLACEHOLDER)
   const mark = document.createElement('mark')
   mark.textContent = NAME_PLACEHOLDER
   promptCode.replaceChildren(before, mark, after)
 }
-let promptTimer = 0
-async function onCopyPrompt(): Promise<void> {
-  const ok = await copyCommand(PROMPT, { clipboard: navigator.clipboard, execCopy })
-  if (!ok) {
-    selectText(promptCode)
-    return
-  }
-  audio.sfx('coin')
-  promptBtn.textContent = '✓ Copied'
-  promptBtn.classList.add('done')
-  clearTimeout(promptTimer)
-  promptTimer = window.setTimeout(() => {
-    promptBtn.textContent = '⧉ Copy prompt'
-    promptBtn.classList.remove('done')
-  }, 2000)
-}
-promptBtn.addEventListener('click', () => void onCopyPrompt())
+wireCopy(promptCode, document.getElementById('copy-prompt') as HTMLButtonElement, PROMPT, '⧉ Copy prompt')
 
 async function onCopy(t: Tile, id: string): Promise<void> {
   const ok = await copyCommand(installCommand(id), { clipboard: navigator.clipboard, execCopy })
