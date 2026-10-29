@@ -30,9 +30,10 @@ export function gamesSource(root: string): string {
 }
 
 const bumpPatch = (v: string): string => {
-  const [maj = '0', min = '0', pat = '0'] = v.split('.')
+  const m = /^(\d+)\.(\d+)\.(\d+)$/.exec(v)
+  if (!m) throw new Error(`hub version ${v} is not x.y.z`)
 
-  return `${maj}.${min}.${Number(pat) + 1}`
+  return `${m[1]}.${m[2]}.${Number(m[3]) + 1}`
 }
 
 export type HubSync = { changed: boolean; files: string[] }
@@ -52,14 +53,14 @@ export function syncHub(root: string, write: boolean): HubSync {
   const files: string[] = []
   if (depsChanged) files.push('plugins/' + HUB_ID + '/.claude-plugin/plugin.json')
   if (gamesChanged) files.push('plugins/' + HUB_ID + '/hooks/games.ts')
+  // a list change without a dependency change (a renamed author) still bumps the version
+  if (gamesChanged && !depsChanged) files.push('plugins/' + HUB_ID + '/.claude-plugin/plugin.json (version)')
 
   if (write && files.length > 0) {
-    if (depsChanged) {
-      manifest.dependencies = deps
-      // installed copies are cached by version: a new dependency list needs a new version
-      manifest.version = bumpPatch(manifest.version ?? '0.1.0')
-      writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n')
-    }
+    // installed copies are cached by version: any change to what the hub lists needs a new version
+    manifest.dependencies = deps
+    manifest.version = bumpPatch(manifest.version ?? '0.1.0')
+    writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n')
     if (gamesChanged) writeFileSync(gamesPath, games)
   }
 

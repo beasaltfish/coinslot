@@ -24,19 +24,12 @@ test('titles are the id in words', () => {
   expect(titleOf('snake')).toBe('Snake')
 })
 
-test('the committed hub is in sync with the marketplace', () => {
-  expect(syncHub(root, false)).toEqual({ changed: false, files: [] })
-})
-
-test('the hub depends on every game and on nothing else', () => {
-  const manifest = JSON.parse(readFileSync(join(root, 'plugins', HUB_ID, '.claude-plugin', 'plugin.json'), 'utf8'))
-  expect(manifest.dependencies).toEqual(market().plugins.map(p => p.name).filter(n => n !== HUB_ID))
-})
-
 test('the marketplace lists the hub, and it is not a game', () => {
   expect(market().plugins.map(p => p.name)).toContain(HUB_ID)
 })
 
+// The committed hub is checked against the marketplace on main by .github/workflows/hub.yml, not here:
+// a contributor's PR adds a marketplace entry and may not touch the hub, so a test of the real files would fail it.
 test('a game added to the marketplace shows up as out of date, and syncing bumps the version', () => {
   const tmp = copy()
   const m = JSON.parse(readFileSync(join(tmp, '.claude-plugin', 'marketplace.json'), 'utf8'))
@@ -66,4 +59,15 @@ test('author names are written as data, never as code', () => {
   const src = gamesSource(tmp)
   expect(src).toContain(JSON.stringify('x"); process.exit(1); ("'))
   expect(src.split('\n').filter(l => l.includes('process.exit')).length).toBe(1)
+})
+
+test('a changed game list alone still bumps the hub version', () => {
+  const tmp = copy()
+  const gamesPath = join(tmp, 'plugins', HUB_ID, 'hooks', 'games.ts')
+  writeFileSync(gamesPath, readFileSync(gamesPath, 'utf8').replace('"Snake"', '"Serpent"'))
+  const before = JSON.parse(readFileSync(join(tmp, 'plugins', HUB_ID, '.claude-plugin', 'plugin.json'), 'utf8')).version as string
+  expect(syncHub(tmp, true).changed).toBe(true)
+  const after = JSON.parse(readFileSync(join(tmp, 'plugins', HUB_ID, '.claude-plugin', 'plugin.json'), 'utf8')).version as string
+  expect(after).not.toBe(before)
+  expect(readFileSync(gamesPath, 'utf8')).toContain('"Snake"')
 })
