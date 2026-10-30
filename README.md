@@ -1,5 +1,11 @@
 # Idle Arcade
 
+
+
+https://github.com/user-attachments/assets/0d52f95b-eb52-4c9d-9309-7fec49226c9e
+
+
+
 Original terminal mini-games, each a Claude Code mod that runs in a pane beside the chat. Install the hub, then type `/idle` to pick a game.
 
 Live demo: https://idlearcade.beasaltfish.com
