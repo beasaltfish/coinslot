@@ -10,6 +10,8 @@ Original terminal mini-games, each a Claude Code mod that runs in a pane beside 
 
 Live demo: https://idlearcade.beasaltfish.com
 
+Watch it in action (30s): https://www.youtube.com/shorts/Fb2iL-5makg
+
 ## Install
 
 ### Everything (recommended)
